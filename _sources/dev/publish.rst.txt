@@ -34,6 +34,8 @@ test.pypi
   poetry source add testpypi https://test.pypi.org/simple/
   poetry add --source testpypi toolkit_cmm
   poetry run python3 -c 'from toolkit_cmm.helloworld import hello_world;print(hello_world());'
+  # pip install --index-url https://test.pypi.org/simple/ toolkit_cmm
+
 
 issues
 ------
