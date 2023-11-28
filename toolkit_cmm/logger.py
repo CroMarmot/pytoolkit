@@ -18,7 +18,7 @@ def create_file_std_logger(
   fh.setLevel(logging.DEBUG)
   fh.setFormatter(
       logging.Formatter(
-          '%(asctime)s [%(filename)s:%(lineno)s - %(funcName)20s() ] - %(levelname)s: %(message)s'
+          '%(asctime)s [%(filename)s:%(lineno)s - %(funcName)s() ] - %(levelname)s: %(message)s'
       )
   )
   logger.addHandler(fh)
