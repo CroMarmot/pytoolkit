@@ -23,7 +23,10 @@ def url2html(session: requests.Session, url: str, **kwargs) -> str:
         if resp.headers.get("content-encoding") == "gzip":
             import gzip
 
-            content = gzip.decompress(resp.content)
+            try:
+                content = gzip.decompress(resp.content)
+            except Exception:
+                content = resp.content
         elif resp.headers.get("content-encoding") == "br":
             import brotli
 
