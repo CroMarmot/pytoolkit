@@ -59,6 +59,9 @@ def url2html(session: requests.Session, url: str, **kwargs) -> str:
             if r.status_code == 200:
                 return str(r.content)
             else:
+                logging.error(
+                    "anti-cloudflare failed status_code:" + str(r.status_code)
+                )
                 return ""
         else:
             return result

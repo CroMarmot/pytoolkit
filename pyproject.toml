@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "toolkit_cmm"
-version = "0.0.1.6"
+version = "0.0.1.7"
 description = "Toolkit for personal use"
 authors = ["cromarmot <yexiaorain@gmail.com>"]
 readme = "README.md"
