@@ -18,7 +18,7 @@ def create_file_std_logger(
   fh.setLevel(logging.DEBUG)
   fh.setFormatter(
       logging.Formatter(
-          '%(asctime)s [%(filename)s:%(lineno)s - %(funcName)s() ] - %(levelname)s: %(message)s'
+          '%(asctime)s %(name)s [%(filename)s:%(lineno)s - %(funcName)s() ] - %(levelname)s: %(message)s'
       )
   )
   logger.addHandler(fh)
@@ -26,7 +26,10 @@ def create_file_std_logger(
   ch = logging.StreamHandler()
   ch.setLevel(level)
   ch.setFormatter(
-      logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+      logging.Formatter(
+          fmt='[%(asctime)s - %(name)s - %(levelname)s]: %(message)s',
+          datefmt='%Y-%m-%d %H:%M:%S',
+      )
   )
   logger.addHandler(ch)
   return logger
