@@ -13,7 +13,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Linting" href="lint.html" />
+    <link rel="prev" title="Linting and Formatting" href="lint.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,38 +33,53 @@
   <section id="publish">
 <h1>Publish<a class="headerlink" href="#publish" title="Permalink to this heading">¶</a></h1>
 <section id="pypi">
-<h2>pypi<a class="headerlink" href="#pypi" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://pypi.org/manage/account/token/">配置 pypi token</a></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 配置token</span>
-poetry<span class="w"> </span>config<span class="w"> </span>pypi-token.pypi<span class="w"> </span>pypi-XXXXXXXXXXXXXXXXXXX
-poetry<span class="w"> </span>build
-poetry<span class="w"> </span>publish
+<h2>PyPI<a class="headerlink" href="#pypi" title="Permalink to this heading">¶</a></h2>
+<p>配置 PyPI token：<a class="reference external" href="https://pypi.org/manage/account/token/">https://pypi.org/manage/account/token/</a></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 清空 dist 文件夹</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>dist
+
+<span class="c1"># 2. 修改版本号（编辑 toolkit_cmm/_version.py）</span>
+<span class="c1"># 例如：__version__ = &quot;0.0.1.9&quot;</span>
+
+<span class="c1"># 3. 构建包</span>
+hatch<span class="w"> </span>build
+
+<span class="c1"># 4. 检查打包内容</span>
+tar<span class="w"> </span>-tf<span class="w"> </span>dist/*.tar.gz
+<span class="c1"># 或 unzip -l dist/*.whl</span>
+
+<span class="c1"># 5. 发布到 PyPI</span>
+hatch<span class="w"> </span>publish
 </pre></div>
 </div>
 </section>
 <section id="test-pypi">
-<h2>test.pypi<a class="headerlink" href="#test-pypi" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://test.pypi.org/manage/account/token/">配置 test.pypi token</a></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>config<span class="w"> </span>repositories.test-pypi<span class="w"> </span>https://test.pypi.org/legacy/
-<span class="c1"># 配置token</span>
-poetry<span class="w"> </span>config<span class="w"> </span>pypi-token.test-pypi<span class="w"> </span>pypi-XXXXXXXXXXXXXXXXXXX
-poetry<span class="w"> </span>build
-poetry<span class="w"> </span>publish<span class="w"> </span>-r<span class="w"> </span>test-pypi
+<h2>Test PyPI<a class="headerlink" href="#test-pypi" title="Permalink to this heading">¶</a></h2>
+<p>配置 Test PyPI token：<a class="reference external" href="https://test.pypi.org/manage/account/token/">https://test.pypi.org/manage/account/token/</a></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 清空 dist 文件夹</span>
+rm<span class="w"> </span>-rf<span class="w"> </span>dist
+
+<span class="c1"># 2. 修改版本号（编辑 toolkit_cmm/_version.py）</span>
+
+<span class="c1"># 3. 构建包</span>
+hatch<span class="w"> </span>build
+
+<span class="c1"># 4. 检查打包内容</span>
+tar<span class="w"> </span>-tf<span class="w"> </span>dist/*.tar.gz
+
+<span class="c1"># 5. 发布到 Test PyPI</span>
+hatch<span class="w"> </span>publish<span class="w"> </span>-r<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/tmp/test_toolkit_cmm
-<span class="nb">cd</span><span class="w"> </span>/tmp/test_toolkit_cmm
-poetry<span class="w"> </span>init<span class="w"> </span>-q
-poetry<span class="w"> </span><span class="nb">source</span><span class="w"> </span>add<span class="w"> </span>testpypi<span class="w"> </span>https://test.pypi.org/simple/
-poetry<span class="w"> </span>add<span class="w"> </span>--source<span class="w"> </span>testpypi<span class="w"> </span>toolkit_cmm
-poetry<span class="w"> </span>run<span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;from toolkit_cmm.helloworld import hello_world;print(hello_world());&#39;</span>
-<span class="c1"># pip install --index-url https://test.pypi.org/simple/ toolkit_cmm</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 测试安装</span>
+pip<span class="w"> </span>install<span class="w"> </span>--index-url<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>toolkit_cmm
+python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;from toolkit_cmm.helloworld import hello_world; print(hello_world())&#39;</span>
 </pre></div>
 </div>
 </section>
 <section id="issues">
-<h2>issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
-<p><a class="reference external" href="https://github.com/python-poetry/poetry/issues/1917">keyring issue</a></p>
+<h2>Issues<a class="headerlink" href="#issues" title="Permalink to this heading">¶</a></h2>
+<p>如果遇到认证问题，确保 token 配置正确，或使用 API token。</p>
 </section>
 </section>
 
@@ -92,7 +107,7 @@ poetry<span class="w"> </span>run<span class="w"> </span>python3<span class="w">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dep.html">Dependency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs.html">Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting and Formatting</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Publish</a></li>
 </ul>
 </li>
@@ -103,7 +118,7 @@ poetry<span class="w"> </span>run<span class="w"> </span>python3<span class="w">
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index.html">Developer Manual</a><ul>
-      <li>Previous: <a href="lint.html" title="previous chapter">Linting</a></li>
+      <li>Previous: <a href="lint.html" title="previous chapter">Linting and Formatting</a></li>
   </ul></li>
   </ul></li>
 </ul>

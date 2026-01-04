@@ -33,21 +33,42 @@
             
   <section id="dependency">
 <h1>Dependency<a class="headerlink" href="#dependency" title="Permalink to this heading">¶</a></h1>
-<section id="add">
-<h2>Add<a class="headerlink" href="#add" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>add<span class="w"> </span>xxx<span class="w"> </span>--group<span class="w"> </span>dev
+<section id="install-dependencies">
+<h2>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 Hatch</span>
+hatch<span class="w"> </span>env<span class="w"> </span>create
+
+<span class="c1"># 或使用 UV</span>
+uv<span class="w"> </span>sync
 </pre></div>
 </div>
 </section>
-<section id="list">
-<h2>List<a class="headerlink" href="#list" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span>show<span class="w"> </span>--tree
+<section id="add-dependency">
+<h2>Add Dependency<a class="headerlink" href="#add-dependency" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 编辑 pyproject.toml 中的 [project.dependencies] 或 [project.optional-dependencies]</span>
+<span class="c1"># 然后重新创建环境</span>
+hatch<span class="w"> </span>env<span class="w"> </span>prune<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>hatch<span class="w"> </span>env<span class="w"> </span>create
+
+<span class="c1"># 或使用 UV</span>
+uv<span class="w"> </span>add<span class="w"> </span>&lt;package&gt;
 </pre></div>
 </div>
 </section>
-<section id="create-requirements-txt">
-<h2>create requirements.txt<a class="headerlink" href="#create-requirements-txt" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>poetry<span class="w"> </span><span class="nb">export</span><span class="w"> </span>-f<span class="w"> </span>requirements.txt<span class="w"> </span>-o<span class="w"> </span>requirements.txt<span class="w"> </span>--without-hashes<span class="w"> </span>--with<span class="w"> </span>dev
+<section id="list-dependencies">
+<h2>List Dependencies<a class="headerlink" href="#list-dependencies" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 Hatch</span>
+hatch<span class="w"> </span>env<span class="w"> </span>run<span class="w"> </span>--<span class="w"> </span>pip<span class="w"> </span>list
+
+<span class="c1"># 或使用 UV</span>
+uv<span class="w"> </span>tree
+</pre></div>
+</div>
+</section>
+<section id="export-requirements-txt">
+<h2>Export requirements.txt<a class="headerlink" href="#export-requirements-txt" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 使用 UV 生成 lock 文件</span>
+uv<span class="w"> </span>sync
+<span class="c1"># requirements.txt 可从 uv.lock 导出，或手动创建</span>
 </pre></div>
 </div>
 </section>
@@ -77,7 +98,7 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Dependency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs.html">Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting and Formatting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="publish.html">Publish</a></li>
 </ul>
 </li>

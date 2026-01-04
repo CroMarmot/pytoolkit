@@ -35,10 +35,21 @@
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h1>
 <p>python3.8+(dev on Ubuntu)</p>
 <p>Docs: sphinx(reStructuredText) + github pages(github action)</p>
-<p>Packages manage: Poetry</p>
-<p>Format: yapf</p>
+<p>Packages manage: Hatch + UV</p>
+<p>Format &amp; Lint: ruff</p>
 <p>Typing: mypy</p>
 <p>Testing: pytest</p>
+<section id="automated-testing">
+<h2>Automated Testing<a class="headerlink" href="#automated-testing" title="Permalink to this heading">¶</a></h2>
+<p>运行测试：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 在 default 环境中</span>
+hatch<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+
+<span class="c1"># 或在 test 环境中</span>
+hatch<span class="w"> </span>env<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--<span class="w"> </span>pytest
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -65,7 +76,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dep.html">Dependency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs.html">Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting and Formatting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="publish.html">Publish</a></li>
 </ul>
 </li>

@@ -33,18 +33,28 @@
             
   <section id="developer-manual">
 <h1>Developer Manual<a class="headerlink" href="#developer-manual" title="Permalink to this heading">¶</a></h1>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>poetry
-poetry<span class="w"> </span>install<span class="w"> </span>--with<span class="w"> </span>dev
-poetry<span class="w"> </span>shell
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 安装 Hatch 和 UV</span>
+pip<span class="w"> </span>install<span class="w"> </span>hatch<span class="w"> </span>uv
+<span class="c1"># 或使用 UV 安装</span>
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>hatch
+
+<span class="c1"># 创建环境并安装依赖</span>
+hatch<span class="w"> </span>env<span class="w"> </span>create
+<span class="c1"># 或使用 UV</span>
+uv<span class="w"> </span>sync
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#automated-testing">Automated Testing</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dep.html">Dependency</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dep.html#add">Add</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dep.html#list">List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dep.html#create-requirements-txt">create requirements.txt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dep.html#install-dependencies">Install Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dep.html#add-dependency">Add Dependency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dep.html#list-dependencies">List Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dep.html#export-requirements-txt">Export requirements.txt</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="docs.html">Docs</a><ul>
@@ -53,15 +63,17 @@ poetry<span class="w"> </span>shell
 <li class="toctree-l2"><a class="reference internal" href="docs.html#github-workflows">Github workflows</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lint.html">Linting</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lint.html#format">format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lint.html#typing">typing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lint.html">Linting and Formatting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lint.html#code-formatting">Code Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html#static-type-checking">Static Type Checking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html#linting">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html#auto-fix">Auto-fix</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="publish.html#pypi">pypi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="publish.html#test-pypi">test.pypi</a></li>
-<li class="toctree-l2"><a class="reference internal" href="publish.html#issues">issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publish.html#pypi">PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publish.html#test-pypi">Test PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="publish.html#issues">Issues</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +104,7 @@ poetry<span class="w"> </span>shell
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dep.html">Dependency</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs.html">Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lint.html">Linting and Formatting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="publish.html">Publish</a></li>
 </ul>
 </li>
