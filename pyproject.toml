@@ -1,36 +1,27 @@
-[tool.poetry]
+[project]
 name = "toolkit_cmm"
-version = "0.0.1.8"
+dynamic = ["version"]
 description = "Toolkit for personal use"
-authors = ["cromarmot <yexiaorain@gmail.com>"]
+authors = [{ name = "cromarmot", email = "yexiaorain@gmail.com" }]
 readme = "README.md"
-license = "MIT"
-repository = "https://github.com/CroMarmot/pytoolkit"
+license = { text = "MIT" }
+requires-python = ">=3.8"
 keywords = ["toolkit"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: MIT License",
     "Operating System :: Unix",
     "Topic :: Utilities",
-    "Topic :: Software Development :: Libraries :: Python Modules"
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-packages = [
-    { include = "toolkit_cmm" },
-]
+dependencies = ["brotli>=1.1.0"]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-brotli = "^1.1.0"
-
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.2.0"
-yapf = "^0.33.0"
-sphinx = "^7.0.0"
+[project.optional-dependencies]
+dev = ["mypy>=1.2.0", "sphinx>=7.0.0", "pytest>=7.0.0", "ruff>=0.1.0"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 
 [tool.mypy]
@@ -55,17 +46,30 @@ warn_unused_ignores = true
 #warn_unreachable = true
 
 [[tool.mypy.overrides]]
-module = [
-    "asgiref.*",
-    "dotenv.*",
-    "cryptography.*",
-    "importlib_metadata",
-]
+module = ["asgiref.*", "dotenv.*", "cryptography.*", "importlib_metadata"]
 ignore_missing_imports = true
 
 
-[tool.yapf]
-based_on_style = 'facebook'
-indent_width = 2
-spaces_before_comment = 4
-split_before_logical_operator = true
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.hatch.envs.default]
+dependencies = ["pytest>=7.0.0", "ruff>=0.1.0"]
+
+[tool.hatch.envs.test]
+dependencies = ["pytest>=7.0.0"]
+
+[tool.hatch.envs.test.scripts]
+test = "pytest --verbose"
+format = "ruff format"
+lint = "ruff check"
+
+[tool.hatch.version]
+path = "toolkit_cmm/_version.py"

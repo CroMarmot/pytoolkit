@@ -1,19 +1,43 @@
+Linting and Formatting
+========================
+
+Code Formatting
+---------------
+
+使用 ruff 进行代码格式化。
+
+.. code-block:: shell
+
+  # 在 default 环境中
+  hatch run format
+
+  # 或手动
+  hatch env run -- ruff format
+
+Static Type Checking
+--------------------
+
+使用 mypy 进行类型检查。
+
+.. code-block:: shell
+
+  hatch env run -- mypy toolkit_cmm
+
 Linting
-=======
+-------
 
-format
-------
+使用 ruff 进行代码检查。
 
-`black <https://github.com/psf/black>`_ is not configurable, such as 2-space-indentation, and i use different language not only python, configurable makes my formatting of different languages more consistent.
+.. code-block:: shell
 
-.. code-block:: 
+  hatch run lint
 
-  poetry run yapf -i  --recursive toolkit_cmm/
+  # 或手动
+  hatch env run -- ruff check
 
+Auto-fix
+--------
 
-typing
-------
+.. code-block:: shell
 
-.. code-block:: 
-
-  poetry run mypy toolkit_cmm
+  hatch env run -- ruff check --fix
